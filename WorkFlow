@@ -1,0 +1,31 @@
+# .github/workflows/ci.yml
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Baixa o código do repositório
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Configura Node.js (exemplo para projetos JS/TS)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+
+      # Instala dependências
+      - name: Install dependencies
+        run: npm install
+
+      # Executa testes
+      - name: Run tests
+        run: npm test
